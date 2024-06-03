@@ -36,7 +36,7 @@ publishing {
             pom {
                 name = 'Lark Client'
                 description = 'Dead simple Lark webhook client'
-                url = 'https://github.com/mawngo/java-lark-client'
+                url = 'https://github.com/lark4j-client'
 
                 licenses {
                     license {
@@ -52,9 +52,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = 'scm:git:git:github.com/mawngo/java-lark-client.git'
-                    developerConnection = 'scm:git:ssh://github.com/mawngo/java-lark-client.git'
-                    url = 'https://github.com/mawngo/java-lark-client'
+                    connection = 'scm:git:git:github.com/lark4j-client.git'
+                    developerConnection = 'scm:git:ssh://github.com/lark4j-client.git'
+                    url = 'https://github.com/lark4j-client'
                 }
             }
         }
