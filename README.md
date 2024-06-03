@@ -41,7 +41,7 @@ public class Main {
 }
 ```
 
-More example can be found in [examples](src/main/java/x10/commons/lark/examples)
+More example can be found in [examples](src/main/java/io/github/mawngo/lark/examples)
 
 ### Supported Message Type
 
