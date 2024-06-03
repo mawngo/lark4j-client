@@ -5,6 +5,7 @@ plugins {
     id 'maven-publish'
     id 'net.ltgt.errorprone' version '3.0.1'
     id 'idea'
+    id 'signing'
 }
 
 group "${projectGroup}"
@@ -94,4 +95,8 @@ javadoc {
     if (JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
     }
+}
+
+signing {
+    sign publishing.publications.mavenJava
 }
