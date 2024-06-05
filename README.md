@@ -8,6 +8,10 @@ For more complex use case, consider using [official java-sdk](https://github.com
 
 ## Installation
 
+Require java 17+.
+
+For java 11 support: check [java11 branch](https://github.com/mawngo/lark4j-client/tree/java11)
+
 Add library to gradle dependencies
 
 ```groovy
