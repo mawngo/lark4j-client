@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * Builder for buttons group var.
@@ -19,7 +20,8 @@ public final class ButtonsGroupBuilder implements Variable<List<Map<String, Obje
 
     @Override
     public List<Map<String, Object>> build() {
-        return buttons.stream().map(Button::build).toList();
+        return buttons.stream().map(Button::build)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public ButtonsGroupBuilder button(String text) {

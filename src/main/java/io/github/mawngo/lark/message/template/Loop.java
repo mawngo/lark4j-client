@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  * Builder for loop module
@@ -19,7 +20,8 @@ public final class Loop implements Variable<List<Map<String, Object>>> {
 
     @Override
     public List<Map<String, Object>> build() {
-        return variables.stream().map(VariablesSet::build).toList();
+        return variables.stream().map(VariablesSet::build)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public Loop add(VariablesSet<?> variables) {

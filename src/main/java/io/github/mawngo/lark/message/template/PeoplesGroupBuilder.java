@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Builder for peoples group var.
@@ -21,7 +22,7 @@ public final class PeoplesGroupBuilder implements Variable<List<Map<String, Obje
     public List<Map<String, Object>> build() {
         return peoples.stream()
                 .map(p -> Map.<String, Object>of("value", p))
-                .toList();
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public PeoplesGroupBuilder add(String value) {

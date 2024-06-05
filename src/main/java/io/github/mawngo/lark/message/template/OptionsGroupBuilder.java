@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Builder for options group var.
@@ -21,7 +22,7 @@ public final class OptionsGroupBuilder implements Variable<List<Map<String, Obje
     public List<Map<String, Object>> build() {
         return options.stream()
                 .map(o -> Map.<String, Object>of("text", o.text(), "value", o.value()))
-                .toList();
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public OptionsGroupBuilder option(String value, String text) {

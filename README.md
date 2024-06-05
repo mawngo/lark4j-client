@@ -8,15 +8,13 @@ For more complex use case, consider using [official java-sdk](https://github.com
 
 ## Installation
 
-Require java 17+.
-
-For java 11 support: check [java11 branch](https://github.com/mawngo/lark4j-client/tree/java11)
+Require java 11+.
 
 Add library to gradle dependencies
 
 ```groovy
 dependencies {
-    implementation 'io.github.mawngo:lark-client:1.0.0'
+    implementation 'io.github.mawngo:lark-client:1.0.0-java11'
 }
 ```
 
