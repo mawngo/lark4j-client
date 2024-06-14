@@ -14,7 +14,7 @@ Add library to gradle dependencies
 
 ```groovy
 dependencies {
-    implementation 'io.github.mawngo:lark-client:1.0.0-java11'
+    implementation 'io.github.mawngo:lark-client:1.1.0'
 }
 ```
 
