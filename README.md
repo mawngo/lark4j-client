@@ -14,7 +14,7 @@ Add library to gradle dependencies
 
 ```groovy
 dependencies {
-    implementation 'io.github.mawngo:lark-client:1.1.0'
+    implementation 'io.github.mawngo:lark-client:1.1.1'
 }
 ```
 
@@ -26,7 +26,7 @@ Example usage:
 public class Main {
     public static void main(String[] args) {
         final var bot = NotificationBot.newSecuredBot("https://open.larksuite.com/open-apis/bot/v2/hook/<id>", "<key>");
-        // Example send rich text, using sendUnchecked to throw RuntimeException.
+        // Example: send rich text, using sendUnchecked to throw RuntimeException.
         bot.sendUnchecked(
             Message.richText()
                 .title("ok")
@@ -43,7 +43,7 @@ public class Main {
 }
 ```
 
-More example can be found in [examples](src/main/java/io/github/mawngo/lark/examples)
+More examples can be found in [examples](src/main/java/io/github/mawngo/lark/examples)
 
 ### Supported Message Type
 

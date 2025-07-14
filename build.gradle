@@ -2,10 +2,9 @@ plugins {
     id "io.freefair.lombok" version "${lombokPluginVersion}"
     id 'java-library'
     id 'java'
-    id 'maven-publish'
     id 'net.ltgt.errorprone' version '3.0.1'
     id 'idea'
-    id 'signing'
+    id 'com.vanniktech.maven.publish' version '0.34.0'
 }
 
 group "${projectGroup}"
@@ -15,8 +14,6 @@ version "${projectVersion}"
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
-    withSourcesJar()
-    withJavadocJar()
 }
 
 allprojects {
@@ -26,45 +23,46 @@ allprojects {
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = "${projectGroup}"
-            artifactId = "${projectName}"
-            version = "${projectVersion}"
-            from components.java
-
-            pom {
-                name = 'Lark Client'
-                description = 'Dead simple Lark webhook client'
-                url = 'https://github.com/mawngo/lark4j-client'
-
-                licenses {
-                    license {
-                        name = 'MIT License'
-                        url = 'https://opensource.org/licenses/MIT'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'mawngo'
-                        name = 'Nguyen Toan'
-                        email = 'sitdownrightnow.dev@gmail.com'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:git:github.com/mawngo/lark4j-client.git'
-                    developerConnection = 'scm:git:ssh://github.com/mawngo/lark4j-client.git'
-                    url = 'https://github.com/mawngo/lark4j-client'
-                }
-            }
-        }
-    }
     repositories {
         maven {
-            // change URLs to point to your repos, e.g. http://my.org/repo
+            name = "build"
             def releasesRepoUrl = layout.buildDirectory.dir('repos/releases')
             def snapshotsRepoUrl = layout.buildDirectory.dir('repos/snapshots')
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+        }
+    }
+}
+
+mavenPublishing {
+    publishToMavenCentral()
+    if (project.hasProperty("signing.keyId") || System.getenv("ORG_GRADLE_PROJECT_signingInMemoryKey") != null) {
+        signAllPublications()
+    }
+
+    coordinates("${projectGroup}", "${projectName}", "${projectVersion}")
+
+    pom {
+        name = 'Lark Client'
+        description = 'Dead simple Lark webhook client'
+        url = 'https://github.com/mawngo/lark4j-client'
+
+        licenses {
+            license {
+                name = 'MIT License'
+                url = 'https://opensource.org/licenses/MIT'
+            }
+        }
+        developers {
+            developer {
+                id = 'mawngo'
+                name = 'Nguyen Toan'
+                email = 'sitdownrightnow.dev@gmail.com'
+            }
+        }
+        scm {
+            connection = 'scm:git:git:github.com/mawngo/lark4j-client.git'
+            developerConnection = 'scm:git:ssh://github.com/mawngo/lark4j-client.git'
+            url = 'https://github.com/mawngo/lark4j-client'
         }
     }
 }
@@ -95,8 +93,4 @@ javadoc {
     if (JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
     }
-}
-
-signing {
-    sign publishing.publications.mavenJava
 }
